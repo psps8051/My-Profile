@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>स्वास्थ्यसिद्धी योग · Kothrud, Pune</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ══ FULL-WIDTH BANNER HERO ══ */
+    .banner-hero {
+      width: 100%;
+      min-height: 88vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #111c11 0%, #162816 40%, #1e3d1a 100%);
+    }
+    .banner-bg-svg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.18; pointer-events: none;
+    }
+    .banner-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg,
+        rgba(17,28,17,0.94) 0%,
+        rgba(17,28,17,0.72) 50%,
+        rgba(17,28,17,0.22) 100%);
+    }
+    .banner-content {
+      position: relative; z-index: 2;
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 100px 5vw 80px;
+      display: grid; grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem; align-items: center;
+    }
+    .banner-text {}
+    .banner-studio-name {
+      font-family: 'Noto Sans Devanagari', 'Mangal', sans-serif;
+      font-size: clamp(1.8rem, 3.8vw, 3rem);
+      font-weight: 800; color: #fff;
+      letter-spacing: 0.02em; line-height: 1.15;
+      margin-bottom: 0.4rem;
+      animation: fadeUp 0.9s 0.1s both;
+    }
+    .banner-studio-name .danda { color: var(--terr-lt); margin: 0 0.4rem; }
+    .banner-tagline-deva {
+      font-family: 'Noto Sans Devanagari', 'Mangal', sans-serif;
+      font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+      color: rgba(255,255,255,0.55); letter-spacing: 0.1em;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.9s 0.2s both;
+    }
+    .banner-tagline-deva .danda { color: var(--terr-lt); opacity: 0.7; margin: 0 0.4rem; }
+    .banner-desc {
+      font-size: clamp(0.95rem, 1.6vw, 1.1rem); font-weight: 300;
+      line-height: 1.85; color: rgba(255,255,255,0.65);
+      max-width: 460px; margin-bottom: 2.5rem;
+      animation: fadeUp 0.9s 0.3s both;
+    }
+    .banner-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.9s 0.4s both; }
+    .btn-light-outline {
+      background: transparent; color: rgba(255,255,255,0.85);
+      border: 1.5px solid rgba(255,255,255,0.3); border-radius: 99px;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.8rem 2rem; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-light-outline:hover { border-color: var(--terr-lt); color: var(--terr-lt); transform: translateY(-2px); }
+
+    /* Banner right — floating stat cards */
+    .banner-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      animation: fadeUp 0.9s 0.3s both;
+    }
+    .banner-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg); padding: 1.5rem 1.25rem;
+      text-align: center; backdrop-filter: blur(8px);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .banner-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-4px); }
+    .banner-card .bc-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .banner-card .bc-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 600;
+      color: var(--terr-lt); line-height: 1;
+    }
+    .banner-card .bc-lbl {
+      font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); margin-top: 0.3rem;
+    }
+    .banner-card.featured {
+      grid-column: span 2;
+      background: rgba(200,134,26,0.2);
+      border-color: rgba(200,134,26,0.35);
+      display: flex; align-items: center; gap: 1rem; text-align: left; padding: 1.25rem 1.5rem;
+    }
+    .banner-card.featured .bc-num { font-size: 1.5rem; }
+
+    /* scroll indicator */
+    .banner-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      opacity: 0.45; animation: fadeUp 1s 0.8s both;
+    }
+    .banner-scroll span { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, #fff, transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+    @media (max-width: 860px) {
+      .banner-content { grid-template-columns: 1fr; }
+      .banner-cards { grid-template-columns: repeat(4,1fr); }
+      .banner-card.featured { grid-column: span 2; }
+      .banner-hero { min-height: auto; }
+    }
+    @media (max-width: 560px) {
+      .banner-cards { grid-template-columns: 1fr 1fr; }
+      .banner-card.featured { grid-column: span 2; }
+    }
+
+    /* ══ YOGA BENEFITS SECTION ══ */
+    .benefits-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1.5rem; max-width: var(--max-w); margin: 3rem auto 0;
+    }
+    .benefit-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      border-top: 3px solid transparent;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .benefit-card:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(30,43,30,0.09); border-top-color: var(--terracotta); }
+    .benefit-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .benefit-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--charcoal); }
+    .benefit-desc { font-size: 0.88rem; font-weight: 300; line-height: 1.75; color: var(--warm-gray); }
+
+    /* ══ YOGA QUOTE BANNER ══ */
+    .quote-banner {
+      background: linear-gradient(135deg, #C8861A 0%, #a06a10 100%);
+      padding: 72px 5vw; text-align: center; position: relative; overflow: hidden;
+    }
+    .quote-banner::before {
+      content: 'ॐ';
+      position: absolute; font-family: serif; font-size: 28rem; font-weight: 900;
+      color: rgba(255,255,255,0.04); top: 50%; left: 50%;
+      transform: translate(-50%,-50%); pointer-events: none; line-height: 1;
+    }
+    .quote-text {
+      font-family: 'Noto Sans Devanagari', 'Mangal', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 600;
+      color: var(--white); letter-spacing: 0.05em; margin-bottom: 0.75rem;
+      position: relative; z-index: 1;
+    }
+    .quote-translation {
+      font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.7);
+      font-style: italic; position: relative; z-index: 1;
+    }
+
+    /* ══ YOGA TYPES (what is yoga) ══ */
+    .yoga-types-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1.25rem; max-width: var(--max-w); margin: 3rem auto 0;
+    }
+    .yoga-type-card {
+      border-radius: var(--radius-lg); overflow: hidden;
+      position: relative; min-height: 240px;
+      display: flex; align-items: flex-end;
+      background: var(--charcoal);
+      transition: transform 0.3s;
+    }
+    .yoga-type-card:hover { transform: translateY(-5px); }
+    .yoga-type-bg {
+      position: absolute; inset: 0; display: flex; align-items: center;
+      justify-content: center; font-size: 5rem; opacity: 0.12;
+    }
+    .yoga-type-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 60%);
+    }
+    .yoga-type-content { position: relative; z-index: 1; padding: 1.25rem; }
+    .yoga-type-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 0.3rem; }
+    .yoga-type-desc { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+    /* ══ 8 LIMBS ══ */
+    .ashtanga-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1rem; max-width: var(--max-w); margin: 3rem auto 0;
+    }
+    .limb-card {
+      background: var(--white); border-radius: var(--radius); padding: 1.5rem 1.25rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      border-left: 3px solid var(--terracotta);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .limb-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(30,43,30,0.08); }
+    .limb-number { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--terracotta); line-height: 1; flex-shrink: 0; }
+    .limb-name-en { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--charcoal); margin-bottom: 0.15rem; }
+    .limb-name-sa { font-family: 'Noto Sans Devanagari', 'Mangal', sans-serif; font-size: 0.72rem; color: var(--terracotta); letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+    .limb-desc { font-size: 0.78rem; font-weight: 300; line-height: 1.6; color: var(--warm-gray); }
+
+    /* ══ BATCHES SUMMARY ══ */
+    .batches-summary-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 0; max-width: var(--max-w); margin: 3rem auto 0;
+      border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .batch-summary-card {
+      padding: 2rem 1.75rem; background: var(--charcoal);
+      border-right: 1px solid rgba(255,255,255,0.06);
+      position: relative; overflow: hidden;
+      transition: background 0.3s;
+    }
+    .batch-summary-card:last-child { border-right: none; }
+    .batch-summary-card:hover { background: rgba(30,43,30,0.95); }
+    .batch-summary-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
+    .batch-summary-card:hover::before { transform: scaleX(1); }
+    .bsc-1::before { background: var(--terracotta); }
+    .bsc-2::before { background: var(--sage); }
+    .bsc-3::before { background: #c0607a; }
+    .bsc-4::before { background: #8b7ec8; }
+    .bsc-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .bsc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--white); margin-bottom: 0.4rem; }
+    .bsc-time { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terr-lt); margin-bottom: 0.75rem; }
+    .bsc-desc { font-size: 0.82rem; font-weight: 300; line-height: 1.65; color: rgba(255,255,255,0.5); }
+
+    /* ══ TEAM ROW ══ */
+    .team-row-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 2rem; max-width: var(--max-w); margin: 3rem auto 0;
+    }
+
+    /* ══ EVENTS STRIP ══ */
+    .events-strip {
+      display: grid; grid-template-columns: repeat(5,1fr);
+      gap: 1rem; max-width: var(--max-w); margin: 3rem auto 0;
+    }
+    .event-strip-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 1.75rem 1.25rem; text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-bottom: 3px solid transparent;
+    }
+    .event-strip-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(30,43,30,0.1); border-bottom-color: var(--terracotta); }
+    .event-strip-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+    .event-strip-name { font-family: 'Noto Sans Devanagari','Mangal',sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.3rem; }
+    .event-strip-sub { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); }
+
+    /* ══ CONTACT STRIP ══ */
+    .contact-info-strip {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 2rem; max-width: var(--max-w); margin: 0 auto;
+      align-items: start;
+    }
+    .ci-card {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 1.5rem; border-left: 4px solid var(--terracotta);
+    }
+    .ci-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--terr-pale); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .ci-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.3rem; display: block; }
+    .ci-value { font-size: 0.9rem; font-weight: 400; color: var(--charcoal); line-height: 1.55; }
+
+    /* responsive */
+    @media (max-width: 1024px) {
+      .yoga-types-grid { grid-template-columns: 1fr 1fr; }
+      .ashtanga-grid { grid-template-columns: 1fr 1fr; }
+      .batches-summary-grid { grid-template-columns: 1fr 1fr; }
+      .events-strip { grid-template-columns: 1fr 1fr 1fr; }
+      .contact-info-strip { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+      .yoga-types-grid { grid-template-columns: 1fr 1fr; }
+      .team-row-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .events-strip { grid-template-columns: 1fr 1fr; }
+      .batches-summary-grid { grid-template-columns: 1fr; }
+      .ashtanga-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .yoga-types-grid { grid-template-columns: 1fr; }
+      .events-strip { grid-template-columns: 1fr 1fr; }
+      .ashtanga-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="nav-holder"></div>
+<div class="page-body">
+
+  <!-- ══════════════════════════════════════
+       FULL-WIDTH BANNER HERO
+  ═══════════════════════════════════════ -->
+  <section class="banner-hero">
+
+    <!-- Background yoga illustration -->
+    <svg class="banner-bg-svg" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- large Om -->
+      <text x="1050" y="480" font-family="serif" font-size="520" fill="white" opacity="0.06" text-anchor="middle">ॐ</text>
+      <!-- lotus petals -->
+      <ellipse cx="1200" cy="600" rx="180" ry="60" fill="white" opacity="0.03" transform="rotate(-20,1200,600)"/>
+      <ellipse cx="1200" cy="600" rx="180" ry="60" fill="white" opacity="0.03" transform="rotate(20,1200,600)"/>
+      <ellipse cx="1200" cy="600" rx="180" ry="60" fill="white" opacity="0.03" transform="rotate(60,1200,600)"/>
+      <ellipse cx="1200" cy="600" rx="180" ry="60" fill="white" opacity="0.03" transform="rotate(-60,1200,600)"/>
+      <!-- mandala rings -->
+      <circle cx="1050" cy="350" r="250" stroke="white" stroke-width="1" fill="none" opacity="0.05" stroke-dasharray="8 6"/>
+      <circle cx="1050" cy="350" r="200" stroke="white" stroke-width="1" fill="none" opacity="0.05"/>
+      <circle cx="1050" cy="350" r="300" stroke="white" stroke-width="1" fill="none" opacity="0.04" stroke-dasharray="4 8"/>
+      <!-- yoga figure sitting -->
+      <ellipse cx="300" cy="480" rx="80" ry="20" fill="white" opacity="0.04"/>
+      <circle cx="300" cy="340" r="38" fill="white" opacity="0.06"/>
+      <ellipse cx="300" cy="420" rx="40" ry="55" fill="white" opacity="0.05"/>
+      <path d="M260 450 Q230 480 200 490 Q210 510 260 500 Z" fill="white" opacity="0.05"/>
+      <path d="M340 450 Q370 480 400 490 Q390 510 340 500 Z" fill="white" opacity="0.05"/>
+    </svg>
+
+    <div class="banner-overlay"></div>
+
+    <div class="banner-content">
+      <!-- Left: Studio name + text -->
+      <div class="banner-text">
+        <div class="banner-studio-name">
+          <span class="danda">॥</span>स्वास्थ्यसिद्धी योग<span class="danda">॥</span>
+        </div>
+        <div class="banner-tagline-deva">
+          <span class="danda">॥</span>योगः कर्मसु कौशलम्<span class="danda">॥</span>
+        </div>
+        <p class="banner-desc">Yoga for every body, every age, every season of life. Holistic wellness — physical, mental, spiritual and social — at Paud Road, Kothrud, Pune since 1st November 2011.</p>
+        <div class="banner-actions">
+          <a class="btn btn-primary" href="services.html">Explore Our Batches</a>
+          <a class="btn-light-outline" href="about.html">Our Story →</a>
+        </div>
+      </div>
+
+      <!-- Right: Floating stat cards -->
+      <div class="banner-cards">
+        <div class="banner-card">
+          <div class="bc-icon">🕉️</div>
+          <div class="bc-num">2011</div>
+          <div class="bc-lbl">Founded</div>
+        </div>
+        <div class="banner-card">
+          <div class="bc-icon">🧘</div>
+          <div class="bc-num">125+</div>
+          <div class="bc-lbl">Members</div>
+        </div>
+        <div class="banner-card">
+          <div class="bc-icon">📅</div>
+          <div class="bc-num">4</div>
+          <div class="bc-lbl">Daily Batches</div>
+        </div>
+        <div class="banner-card">
+          <div class="bc-icon">💻</div>
+          <div class="bc-num">Online</div>
+          <div class="bc-lbl">&amp; Offline</div>
+        </div>
+        <div class="banner-card featured">
+          <div style="font-size:1.6rem;flex-shrink:0;">🇮🇳</div>
+          <div>
+            <div class="bc-num" style="font-size:1.1rem;color:#fff;">Instruction in Marathi</div>
+            <div class="bc-lbl">Making yoga accessible for all</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       ABOUT SNAPSHOT
+  ═══════════════════════════════════════ -->
+  <section class="section home-about">
+    <div class="section-inner">
+      <div class="home-about-grid reveal">
+        <div class="about-img-stack">
+          <div class="about-img-main-wrap ph">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><path d="M20 44 Q32 8 44 44" stroke="#C8861A" stroke-width="2" fill="none"/><path d="M32 44 L32 56" stroke="#C8861A" stroke-width="2"/><circle cx="32" cy="12" r="6" fill="rgba(200,134,26,0.3)"/></svg>
+          </div>
+          <div class="about-accent-img ph">
+            <svg width="40" height="40" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#3A7D35" stroke-width="2" fill="none"/><path d="M32 12L32 52M12 32L52 32" stroke="#3A7D35" stroke-width="1.5"/></svg>
+          </div>
+        </div>
+        <div>
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title">From 4 members to<br>a <em>community</em> of 125.</h2>
+          <div class="divider"></div>
+          <p class="section-body">Our journey began under the guidance of Yoga Guru Shri BB Sir on <strong>1st November 2011</strong>. Over 10+ glorious years, our member strength has grown from just 4 to 125 who practice yoga every single day.</p>
+          <p class="section-body" style="margin-top:1rem;">We offer specialised batches for Fitness, Senior Citizens, Pregnant Women, and Meditation — both offline at Kothrud and online. Our aim is holistic health: physical, mental, spiritual and social.</p>
+          <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+            <a class="btn btn-primary" href="about.html">Read Our Story</a>
+            <a class="btn btn-outline" href="contact.html">Join Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       WHAT IS YOGA — BENEFITS
+  ═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--cream);">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 0.5rem;">
+        <span class="section-label">Why Yoga?</span>
+        <h2 class="section-title">Yoga transforms you from the <em>inside out.</em></h2>
+        <p class="section-body" style="margin:0 auto;text-align:center;">Yoga is not just exercise — it is a complete science of life. Here is what a regular practice can do for you.</p>
+      </div>
+      <div class="benefits-grid reveal">
+        <div class="benefit-card">
+          <div class="benefit-icon">💪</div>
+          <div class="benefit-title">Physical Health</div>
+          <p class="benefit-desc">Improves flexibility, strength, balance and posture. Regular practice helps manage chronic conditions like back pain, arthritis, hypertension and diabetes — naturally and sustainably.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🧠</div>
+          <div class="benefit-title">Mental Clarity</div>
+          <p class="benefit-desc">Reduces stress, anxiety and depression. Pranayama and meditation activate the parasympathetic nervous system, calming the mind and sharpening focus and memory.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🌸</div>
+          <div class="benefit-title">Emotional Balance</div>
+          <p class="benefit-desc">Cultivates self-awareness, patience and inner peace. Yoga teaches us to respond rather than react — building resilience and emotional intelligence in everyday life.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <div class="benefit-title">Energy & Vitality</div>
+          <p class="benefit-desc">Pranayama and Suryanamaskar boost prana (life force), improve circulation, and energise the body. Many practitioners report needing less sleep and feeling more alive.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🤝</div>
+          <div class="benefit-title">Social Wellbeing</div>
+          <p class="benefit-desc">Yoga fosters a sense of community and belonging. The shared journey on the mat builds deep, lasting friendships and a support network that extends beyond the studio.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🕉️</div>
+          <div class="benefit-title">Spiritual Growth</div>
+          <p class="benefit-desc">At its heart, yoga is a path to self-realisation. Through consistent practice, one moves toward greater awareness, contentment, and a deeper connection with life itself.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       YOGA QUOTE
+  ═══════════════════════════════════════ -->
+  <div class="quote-banner reveal">
+    <div class="quote-text">योगः चित्तवृत्तिनिरोधः</div>
+    <div class="quote-translation">"Yoga is the cessation of the fluctuations of the mind." — Patanjali, Yoga Sutras</div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       FOUR PATHS OF YOGA
+  ═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--white);">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto 0.5rem;">
+        <span class="section-label">The Four Paths</span>
+        <h2 class="section-title">Four ways to <em>walk</em> the yogic path.</h2>
+        <p class="section-body" style="margin:0 auto;text-align:center;">Classical Indian philosophy describes four main paths of yoga — each suited to a different temperament, yet all leading to the same destination.</p>
+      </div>
+      <div class="yoga-types-grid reveal">
+        <div class="yoga-type-card" style="background:linear-gradient(160deg,#1a3a1e,#0e2412);">
+          <div class="yoga-type-bg">🧘</div>
+          <div class="yoga-type-gradient"></div>
+          <div class="yoga-type-content">
+            <div class="yoga-type-name">Jnana Yoga</div>
+            <div class="yoga-type-desc">The path of knowledge and wisdom. Self-inquiry, study of scriptures, and philosophical reflection to realise the true nature of the Self.</div>
+          </div>
+        </div>
+        <div class="yoga-type-card" style="background:linear-gradient(160deg,#2a3a10,#1a2a0a);">
+          <div class="yoga-type-bg">💝</div>
+          <div class="yoga-type-gradient"></div>
+          <div class="yoga-type-content">
+            <div class="yoga-type-name">Bhakti Yoga</div>
+            <div class="yoga-type-desc">The path of devotion and love. Through prayer, chanting and surrender, the practitioner dissolves the ego in the ocean of divine love.</div>
+          </div>
+        </div>
+        <div class="yoga-type-card" style="background:linear-gradient(160deg,#1e3a18,#122610);">
+          <div class="yoga-type-bg">🤲</div>
+          <div class="yoga-type-gradient"></div>
+          <div class="yoga-type-content">
+            <div class="yoga-type-name">Karma Yoga</div>
+            <div class="yoga-type-desc">The path of selfless action. Acting without attachment to results — offering every deed as service — is itself a profound spiritual practice.</div>
+          </div>
+        </div>
+        <div class="yoga-type-card" style="background:linear-gradient(160deg,#2e3a0e,#1e2808);">
+          <div class="yoga-type-bg">⚡</div>
+          <div class="yoga-type-gradient"></div>
+          <div class="yoga-type-content">
+            <div class="yoga-type-name">Raja Yoga</div>
+            <div class="yoga-type-desc">The royal path of meditation and mind control. Patanjali's eight-limbed system — Ashtanga — forms the foundation of most modern yoga practices.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       8 LIMBS OF YOGA (ASHTANGA)
+  ═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--sand);">
+    <div class="section-inner">
+      <div class="reveal" style="max-width:600px;margin-bottom:0.5rem;">
+        <span class="section-label">Patanjali's Ashtanga</span>
+        <h2 class="section-title">The 8 Limbs of <em>Yoga.</em></h2>
+        <p class="section-body">Maharishi Patanjali's Yoga Sutras describe eight progressive disciplines — a complete roadmap for living a meaningful, purposeful and liberated life.</p>
+      </div>
+      <div class="ashtanga-grid reveal">
+        <div class="limb-card">
+          <div class="limb-number">1</div>
+          <div><div class="limb-name-en">Yama</div><div class="limb-name-sa">यम</div><div class="limb-desc">Universal ethical disciplines — non-violence, truthfulness, non-stealing, continence, non-covetousness.</div></div>
+        </div>
+        <div class="limb-card">
+          <div class="limb-number">2</div>
+          <div><div class="limb-name-en">Niyama</div><div class="limb-name-sa">नियम</div><div class="limb-desc">Personal observances — purity, contentment, self-discipline, self-study, surrender to the divine.</div></div>
+        </div>
+        <div class="limb-card" style="border-left-color:var(--sage);">
+          <div class="limb-number" style="color:var(--sage);">3</div>
+          <div><div class="limb-name-en">Asana</div><div class="limb-name-sa">आसन</div><div class="limb-desc">Physical postures that steady the body, open energy channels, and prepare the system for meditation.</div></div>
+        </div>
+        <div class="limb-card" style="border-left-color:var(--sage);">
+          <div class="limb-number" style="color:var(--sage);">4</div>
+          <div><div class="limb-name-en">Pranayama</div><div class="limb-name-sa">प्राणायाम</div><div class="limb-desc">Breath regulation that expands prana, purifies the nadis, and bridges body and mind.</div></div>
+        </div>
+        <div class="limb-card">
+          <div class="limb-number">5</div>
+          <div><div class="limb-name-en">Pratyahara</div><div class="limb-name-sa">प्रत्याहार</div><div class="limb-desc">Withdrawal of the senses inward — turning attention away from external distractions.</div></div>
+        </div>
+        <div class="limb-card">
+          <div class="limb-number">6</div>
+          <div><div class="limb-name-en">Dharana</div><div class="limb-name-sa">धारणा</div><div class="limb-desc">Concentration — fixing the mind on a single point to build the capacity for meditation.</div></div>
+        </div>
+        <div class="limb-card" style="border-left-color:#8b7ec8;">
+          <div class="limb-number" style="color:#8b7ec8;">7</div>
+          <div><div class="limb-name-en">Dhyana</div><div class="limb-name-sa">ध्यान</div><div class="limb-desc">Meditation — an uninterrupted flow of awareness toward the object of concentration.</div></div>
+        </div>
+        <div class="limb-card" style="border-left-color:#8b7ec8;">
+          <div class="limb-number" style="color:#8b7ec8;">8</div>
+          <div><div class="limb-name-en">Samadhi</div><div class="limb-name-sa">समाधि</div><div class="limb-desc">The state of blissful absorption — unity of the meditator, act of meditation, and the object meditated upon.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       OUR BATCHES
+  ═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--cream);">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 0.5rem;">
+        <span class="section-label">Our Batches</span>
+        <h2 class="section-title">Find the batch that <em>calls</em> you.</h2>
+        <p class="section-body" style="margin:0 auto;text-align:center;">Offline &amp; online · Marathi medium · Mon – Fri</p>
+      </div>
+      <div class="batches-summary-grid reveal">
+        <div class="batch-summary-card bsc-1">
+          <div class="bsc-icon">🔥</div>
+          <div class="bsc-name">Fitness Yoga</div>
+          <div class="bsc-time">6:30 AM &amp; 8:00 AM · Mon–Fri</div>
+          <p class="bsc-desc">Power Yoga, Suryanamaskar, Asanas, Shuddhi Kriyas, Pranayam &amp; Dhyan for overall fitness.</p>
+        </div>
+        <div class="batch-summary-card bsc-2">
+          <div class="bsc-icon">🌿</div>
+          <div class="bsc-name">Senior Citizens</div>
+          <div class="bsc-time">10:30 AM · Mon–Fri</div>
+          <p class="bsc-desc">Gentle Sukshma Vyayam, Chair Suryanamaskar, basic asanas and deep relaxation techniques.</p>
+        </div>
+        <div class="batch-summary-card bsc-3">
+          <div class="bsc-icon">🌸</div>
+          <div class="bsc-name">Pregnancy Batch</div>
+          <div class="bsc-time">6:30 PM · Mon, Wed, Fri</div>
+          <p class="bsc-desc">Trimester-specific yoga, Garbhsanskar, mantra therapy and Ayurvedic diet counselling.</p>
+        </div>
+        <div class="batch-summary-card bsc-4">
+          <div class="bsc-icon">🧘</div>
+          <div class="bsc-name">Meditation Batch</div>
+          <div class="bsc-time">6:15 PM · Mon, Wed, Fri</div>
+          <p class="bsc-desc">Sampurna Pranayama, varied meditation and relaxation techniques for inner peace.</p>
+        </div>
+      </div>
+      <div class="reveal" style="text-align:center;margin-top:2.5rem;">
+        <a class="btn btn-outline" href="services.html">View Full Schedule →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       OUR TEAM
+  ═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--white);">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;max-width:520px;margin:0 auto 0.5rem;">
+        <span class="section-label">Our Teachers</span>
+        <h2 class="section-title">Guided by those who <em>live</em> the practice.</h2>
+      </div>
+      <div class="team-row-grid reveal">
+        <div class="team-thumb">
+          <div class="team-thumb-img ph"><svg width="48" height="48" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="24" r="12" stroke="#C8861A" stroke-width="2" fill="none"/><path d="M12 52 Q22 38 32 38 Q42 38 52 52" stroke="#C8861A" stroke-width="2" fill="none"/><circle cx="50" cy="14" r="5" fill="rgba(200,134,26,0.2)" stroke="#C8861A" stroke-width="1"/></svg></div>
+          <div class="team-thumb-name">AP</div>
+          <div class="team-thumb-role">Founder &amp; Lead Teacher</div>
+        </div>
+        <div class="team-thumb">
+          <div class="team-thumb-img ph"><svg width="48" height="48" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="24" r="12" stroke="#3A7D35" stroke-width="2" fill="none"/><path d="M12 52 Q22 38 32 38 Q42 38 52 52" stroke="#3A7D35" stroke-width="2" fill="none"/></svg></div>
+          <div class="team-thumb-name">SK</div>
+          <div class="team-thumb-role">Yoga Teacher</div>
+        </div>
+        <div class="team-thumb">
+          <div class="team-thumb-img ph"><svg width="48" height="48" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="24" r="12" stroke="#C8861A" stroke-width="2" fill="none"/><path d="M12 52 Q22 38 32 38 Q42 38 52 52" stroke="#C8861A" stroke-width="2" fill="none"/></svg></div>
+          <div class="team-thumb-name">NM</div>
+          <div class="team-thumb-role">Yoga Teacher</div>
+        </div>
+        <div class="team-thumb">
+          <div class="team-thumb-img ph"><svg width="48" height="48" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="24" r="12" stroke="#3A7D35" stroke-width="2" fill="none"/><path d="M12 52 Q22 38 32 38 Q42 38 52 52" stroke="#3A7D35" stroke-width="2" fill="none"/><text x="32" y="56" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(200,134,26,0.5)">ॐ</text></svg></div>
+          <div class="team-thumb-name">BB</div>
+          <div class="team-thumb-role">Inspiration — Our Guru</div>
+        </div>
+      </div>
+      <div class="reveal" style="text-align:center;margin-top:2.5rem;">
+        <a class="btn btn-outline" href="team.html">Meet the Full Team →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       EVENTS
+  ═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--cream);">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;max-width:520px;margin:0 auto 0.5rem;">
+        <span class="section-label">Community Events</span>
+        <h2 class="section-title">Celebrations that <em>unite</em> us.</h2>
+      </div>
+      <div class="events-strip reveal">
+        <div class="event-strip-card">
+          <div class="event-strip-icon">☀️</div>
+          <div class="event-strip-name">सूर्यनमस्कार दिन</div>
+          <div class="event-strip-sub">Suryanamaskar Day</div>
+        </div>
+        <div class="event-strip-card">
+          <div class="event-strip-icon">🧘</div>
+          <div class="event-strip-name">योगदिन</div>
+          <div class="event-strip-sub">International Yoga Day</div>
+        </div>
+        <div class="event-strip-card">
+          <div class="event-strip-icon">🙏</div>
+          <div class="event-strip-name">गुरुपौर्णिमा</div>
+          <div class="event-strip-sub">Guru Purnima</div>
+        </div>
+        <div class="event-strip-card">
+          <div class="event-strip-icon">🪔</div>
+          <div class="event-strip-name">गरबा · भोंडला</div>
+          <div class="event-strip-sub">Festive Celebrations</div>
+        </div>
+        <div class="event-strip-card">
+          <div class="event-strip-icon">🚌</div>
+          <div class="event-strip-name">सहल · स्नेहमेळावा</div>
+          <div class="event-strip-sub">Annual Outing</div>
+        </div>
+      </div>
+      <div class="reveal" style="text-align:center;margin-top:2.5rem;">
+        <a class="btn btn-outline" href="events.html">View All Events →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       GALLERY STRIP
+  ═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--white);">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;max-width:500px;margin:0 auto 0.5rem;">
+        <span class="section-label">Gallery</span>
+        <h2 class="section-title">Moments from our <em>community.</em></h2>
+      </div>
+      <div class="gallery-strip reveal">
+        <div class="gallery-strip-item"><div class="ph" style="height:100%;min-height:240px"><svg width="56" height="56" viewBox="0 0 64 64" fill="none"><path d="M20 44 Q32 8 44 44" stroke="#C8861A" stroke-width="2" fill="none"/></svg></div></div>
+        <div class="gallery-strip-item"><div class="ph"><svg width="40" height="40" viewBox="0 0 64 64" fill="none"><ellipse cx="32" cy="32" rx="22" ry="14" stroke="#3A7D35" stroke-width="2" fill="none"/></svg></div></div>
+        <div class="gallery-strip-item"><div class="ph"><svg width="40" height="40" viewBox="0 0 64 64" fill="none"><rect x="16" y="16" width="32" height="32" rx="12" stroke="#C8861A" stroke-width="2" fill="none"/></svg></div></div>
+        <div class="gallery-strip-item"><div class="ph"><svg width="40" height="40" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="26" r="10" stroke="#3A7D35" stroke-width="2" fill="none"/></svg></div></div>
+        <div class="gallery-strip-item"><div class="ph"><svg width="40" height="40" viewBox="0 0 64 64" fill="none"><path d="M32 10L38 26L56 26L42 36L48 54L32 44L16 54L22 36L8 26L26 26Z" stroke="#C8861A" stroke-width="1.5" fill="none"/></svg></div></div>
+      </div>
+      <div class="reveal" style="text-align:center;margin-top:2.5rem;">
+        <a class="btn btn-outline" href="gallery.html">View Full Gallery →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CONTACT INFO
+  ═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--cream);">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;max-width:480px;margin:0 auto 3rem;">
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title">Come visit us at <em>Kothrud.</em></h2>
+      </div>
+      <div class="contact-info-strip reveal">
+        <div class="ci-card">
+          <div class="ci-icon">📍</div>
+          <div>
+            <span class="ci-label">Address</span>
+            <span class="ci-value">Dengle Art Gallery, Vanaz Corner,<br>Alkapuri Society, Paud Rd,<br>Kothrud, Pune – 411038</span>
+          </div>
+        </div>
+        <div class="ci-card" style="border-left-color:var(--sage);">
+          <div class="ci-icon" style="background:var(--sage-pale);">📞</div>
+          <div>
+            <span class="ci-label" style="color:var(--sage);">Phone / WhatsApp</span>
+            <span class="ci-value">+91 988xx xxxxx</span>
+          </div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-icon">✉️</div>
+          <div>
+            <span class="ci-label">Email</span>
+            <span class="ci-value">ssyogapune@gmail.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="text-align:center;margin-top:2.5rem;">
+        <a class="btn btn-primary" href="contact.html">Get Full Details &amp; Map →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ FINAL CTA ══ -->
+  <div class="home-contact-strip reveal">
+    <h2>Ready to begin your journey?</h2>
+    <p>Whether you're new to yoga or returning to practice, there's a batch here for you — online or at the studio.</p>
+    <a class="btn btn-white" href="contact.html">Join a Batch Today →</a>
+  </div>
+
+</div><!-- end page-body -->
+
+<div id="footer-holder"></div>
+<script src="shared.js"></script>
+<script>initPage('index.html');</script>
+</body>
+</html>

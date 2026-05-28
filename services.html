@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services · स्वास्थ्यसिद्धी योग</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .batch-item {
+      font-size: 0.9rem; font-weight: 300; color: var(--charcoal);
+      line-height: 1.6; padding: 0.5rem 0;
+      border-bottom: 1px solid var(--sand);
+      display: flex; align-items: baseline; gap: 0.5rem;
+    }
+    .batch-item:last-child { border-bottom: none; }
+    .batch-item-full { grid-column: 1 / -1; }
+    @media (max-width: 640px) {
+      .batch-item { grid-column: 1 / -1; }
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+<div id="nav-holder"></div>
+<div class="page-body">
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Services</div>
+      <h1>Find the class that<br><em>calls</em> you.</h1>
+      <p>Four thoughtfully designed batches — offline &amp; online — for every body, every age, every season of life. Instruction primarily in Marathi.</p>
+    </div>
+  </div>
+
+  <!-- ── MODE NOTICE BANNER ── -->
+  <div style="background:var(--terr-pale); border-top:3px solid var(--terracotta); padding:1.25rem 5vw;">
+    <div style="max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <span style="font-size:1.3rem;">🕉️</span>
+      <p style="font-size:0.92rem; font-weight:400; color:var(--charcoal); line-height:1.6;">
+        We conduct <strong>Offline as well as Online</strong> yoga classes. &nbsp;|&nbsp;
+        Medium of instruction is primarily <strong>Marathi</strong>.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── BATCH CARDS ── -->
+  <section class="section" style="background:var(--cream)">
+    <div class="section-inner">
+      <div class="reveal" style="max-width:600px; margin-bottom:3.5rem;">
+        <span class="section-label">Our Batches</span>
+        <h2 class="section-title">Every practice, every <em>need.</em></h2>
+        <p class="section-body">Four carefully designed batches to suit different life stages and goals — from energising morning fitness to gentle senior-friendly sessions, prenatal care to deep meditation.</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:2rem; max-width:var(--max-w);" class="reveal">
+
+        <!-- ── BATCH 1: Fitness Yoga ── -->
+        <div class="batch-card" style="background:var(--white); border-radius:18px; overflow:hidden; box-shadow:0 4px 24px rgba(30,43,30,0.07);">
+          <div class="batch-header" style="background:var(--charcoal); padding:1.75rem 2.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div style="display:flex; align-items:center; gap:1.25rem;">
+              <div style="width:52px;height:52px;border-radius:14px;background:rgba(200,134,26,0.25);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🔥</div>
+              <div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--white);line-height:1.1;">Fitness Yoga</div>
+                <div style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terr-lt);margin-top:0.2rem;">Morning Batch · Mon – Fri</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <span style="background:rgba(200,134,26,0.2);color:var(--terr-lt);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:99px;">⏰ 6:30 – 7:30 AM</span>
+              <span style="background:rgba(200,134,26,0.2);color:var(--terr-lt);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:99px;">⏰ 8:00 – 9:00 AM</span>
+            </div>
+          </div>
+          <div style="padding:2rem 2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:0.6rem 2rem;">
+            <div class="batch-item">✦ Stretching &amp; loosening exercises</div>
+            <div class="batch-item">✦ Power Yoga sequences</div>
+            <div class="batch-item">✦ Suryanamaskar</div>
+            <div class="batch-item">✦ Asana variations</div>
+            <div class="batch-item">✦ Shuddhi Kriyas</div>
+            <div class="batch-item">✦ Pranayam</div>
+            <div class="batch-item">✦ Dhyan</div>
+          </div>
+        </div>
+
+        <!-- ── BATCH 2: Senior Citizens ── -->
+        <div class="batch-card" style="background:var(--white); border-radius:18px; overflow:hidden; box-shadow:0 4px 24px rgba(30,43,30,0.07);">
+          <div class="batch-header" style="background:var(--sage); padding:1.75rem 2.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div style="display:flex; align-items:center; gap:1.25rem;">
+              <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🌿</div>
+              <div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--white);line-height:1.1;">Senior Citizens' Batch</div>
+                <div style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:0.2rem;">Mid-Morning Batch · Mon – Fri</div>
+              </div>
+            </div>
+            <span style="background:rgba(255,255,255,0.25);color:var(--white);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:99px;">⏰ 10:30 – 11:30 AM</span>
+          </div>
+          <div style="padding:2rem 2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:0.6rem 2rem;">
+            <div class="batch-item">✦ Sukshma Vyayam</div>
+            <div class="batch-item">✦ Breathing exercises</div>
+            <div class="batch-item">✦ Chair Suryanamaskar</div>
+            <div class="batch-item">✦ Simple basic asanas</div>
+            <div class="batch-item">✦ Relaxing asanas</div>
+            <div class="batch-item">✦ Deep relaxation techniques</div>
+            <div class="batch-item">✦ Pranayam</div>
+            <div class="batch-item">✦ Dhyan</div>
+          </div>
+        </div>
+
+        <!-- ── BATCH 3: Pregnancy ── -->
+        <div class="batch-card" style="background:var(--white); border-radius:18px; overflow:hidden; box-shadow:0 4px 24px rgba(30,43,30,0.07);">
+          <div class="batch-header" style="background:linear-gradient(135deg,#b5715a 0%,#c4724a 100%); padding:1.75rem 2.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div style="display:flex; align-items:center; gap:1.25rem;">
+              <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🌸</div>
+              <div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--white);line-height:1.1;">Pregnancy Batch</div>
+                <div style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:0.2rem;">Evening Batch · Mon, Wed &amp; Fri</div>
+              </div>
+            </div>
+            <span style="background:rgba(255,255,255,0.2);color:var(--white);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:99px;">⏰ 6:30 – 7:30 PM</span>
+          </div>
+          <div style="padding:2rem 2.5rem; display:flex; flex-direction:column; gap:0.65rem;">
+            <div class="batch-item batch-item-full">✦ Yoga practices for physical, mental and spiritual health of mother and baby</div>
+            <div class="batch-item batch-item-full">✦ Music and mantra therapy for Garbhsanskar</div>
+            <div class="batch-item batch-item-full">✦ Womb talking</div>
+            <div class="batch-item batch-item-full">✦ Specific modified Yogasanas, Pranayama and Meditation across all three trimesters of pregnancy</div>
+            <div class="batch-item batch-item-full">✦ Diet counselling with basic rules of modern science and Ayurveda</div>
+          </div>
+        </div>
+
+        <!-- ── BATCH 4: Meditation ── -->
+        <div class="batch-card" style="background:var(--white); border-radius:18px; overflow:hidden; box-shadow:0 4px 24px rgba(30,43,30,0.07);">
+          <div class="batch-header" style="background:linear-gradient(135deg,#3a3a38 0%,#2c2c2a 100%); padding:1.75rem 2.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div style="display:flex; align-items:center; gap:1.25rem;">
+              <div style="width:52px;height:52px;border-radius:14px;background:rgba(200,134,26,0.25);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🧘</div>
+              <div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--white);line-height:1.1;">Meditation Batch</div>
+                <div style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terr-lt);margin-top:0.2rem;">Evening Batch · Mon, Wed &amp; Fri</div>
+              </div>
+            </div>
+            <span style="background:rgba(200,134,26,0.25);color:var(--terr-lt);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:99px;">⏰ 6:15 – 7:30 PM</span>
+          </div>
+          <div style="padding:2rem 2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:0.6rem 2rem;">
+            <div class="batch-item">✦ Sukshma Vyayam</div>
+            <div class="batch-item">✦ Breathing exercises</div>
+            <div class="batch-item">✦ Sampurna Pranayama</div>
+            <div class="batch-item">✦ Different types of meditation &amp; relaxation techniques</div>
+          </div>
+        </div>
+
+      </div><!-- end flex column -->
+    </div>
+  </section>
+
+  <!-- ── SCHEDULE AT A GLANCE ── -->
+  <section class="section" style="background:var(--charcoal)">
+    <div class="section-inner">
+      <div class="reveal" style="max-width:560px; margin-bottom:3rem;">
+        <span class="section-label" style="color:var(--sage-lt);">Schedule at a Glance</span>
+        <h2 class="section-title light">Your week at <em>Praana.</em></h2>
+        <p class="section-body" style="color:rgba(255,255,255,0.5);">All batches run Monday to Friday. Pregnancy and Meditation batches run on alternate days (Mon, Wed, Fri).</p>
+      </div>
+      <div style="max-width:var(--max-w); overflow-x:auto;" class="reveal">
+        <table style="width:100%; border-collapse:collapse; font-size:0.88rem; min-width:560px;">
+          <thead>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+              <th style="text-align:left;padding:0.85rem 1.25rem;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:500;white-space:nowrap;">Time</th>
+              <th style="text-align:left;padding:0.85rem 1.25rem;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:500;">Batch</th>
+              <th style="text-align:left;padding:0.85rem 1.25rem;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:500;">Days</th>
+              <th style="text-align:left;padding:0.85rem 1.25rem;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:500;">For Whom</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:1rem 1.25rem;color:var(--terr-lt);font-weight:600;white-space:nowrap;">6:30 – 7:30 AM</td>
+              <td style="padding:1rem 1.25rem;color:var(--white);">🔥 Fitness Yoga</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">Mon – Fri</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">All adults</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);">
+              <td style="padding:1rem 1.25rem;color:var(--terr-lt);font-weight:600;white-space:nowrap;">8:00 – 9:00 AM</td>
+              <td style="padding:1rem 1.25rem;color:var(--white);">🔥 Fitness Yoga</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">Mon – Fri</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">All adults</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:1rem 1.25rem;color:var(--sage-lt);font-weight:600;white-space:nowrap;">10:30 – 11:30 AM</td>
+              <td style="padding:1rem 1.25rem;color:var(--white);">🌿 Senior Citizens' Batch</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">Mon – Fri</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">Senior citizens</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);">
+              <td style="padding:1rem 1.25rem;color:var(--terr-lt);font-weight:600;white-space:nowrap;">6:15 – 7:30 PM</td>
+              <td style="padding:1rem 1.25rem;color:var(--white);">🧘 Meditation Batch</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">Mon, Wed, Fri</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">All adults</td>
+            </tr>
+            <tr>
+              <td style="padding:1rem 1.25rem;color:var(--terr-lt);font-weight:600;white-space:nowrap;">6:30 – 7:30 PM</td>
+              <td style="padding:1rem 1.25rem;color:var(--white);">🌸 Pregnancy Batch</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">Mon, Wed, Fri</td>
+              <td style="padding:1rem 1.25rem;color:rgba(255,255,255,0.5);">Expecting mothers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <div class="home-contact-strip reveal">
+    <h2>Ready to join a batch?</h2>
+    <p>Contact us to know more, visit the studio, or book your first class today.</p>
+    <a class="btn btn-white" href="contact.html">Get in Touch →</a>
+  </div>
+
+</div>
+<div id="footer-holder"></div>
+<script src="shared.js"></script>
+<script>initPage('services.html');</script>
+</body>
+</html>
